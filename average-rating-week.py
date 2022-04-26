@@ -3,18 +3,10 @@ import pandas
 from datetime import datetime
 from pytz import utc 
 
-#to do plotting we need to add the library
-import matplotlib.pyplot as plt
-
-
 #we want to use .read from pandas libr to show the data in a great format
 data = pandas.read_csv("reviews.csv", parse_dates=['Timestamp'])
-
-#including data frame
-# aggregate the mean
-data['Day'] = data['Timestamp'].dt.date
-#average rating for that course for that day 
-day_average = data.groupby(['Day']).mean()
+data['Week'] = data['Timestamp'].dt.strftime('%Y-%U-%m')
+week_average = data.groupby(['Week']).mean()
 
 
 chart_def = """
@@ -24,10 +16,10 @@ chart_def = """
         inverted: false
     },
     title: {
-        text: 'Atmosphere Temperature by Altitude'
+        text: 'Average Weekly Rating'
     },
     subtitle: {
-        text: 'According to the Standard Atmosphere Model'
+        text: 'Rating per weekly courses'
     },
     xAxis: {
         reversed: false,
@@ -78,20 +70,17 @@ chart_def = """
 }
 """
 
-#created functiom
 def app():
     wp = jp.QuasarPage()
     #creating object for each components 
     h1 = jp.QDiv(a=wp, text="Analysis of Course Reviews", classes="text-h3 text-center q-pa-md")
     p1 = jp.QDiv(a=wp, text="These graphs course review analysis")
+    
+    
+    
     hc = jp.HighCharts(a=wp, options=chart_def)
-    hc.options.title.text = "Average Rating by Day"
-    #series is a key and the value is a list
-    #  list dictionary has two keys name and data 
-
-    hc.options.xAxis.categories = list(day_average.index)
-    hc.options.series[0].data = list(day_average['Rating'])
-
+    hc.options.xAxis.categories = list(week_average.index)
+    hc.options.series[0].data = list(week_average['Rating'])
     return wp
 
 jp.justpy(app)
