@@ -27,7 +27,7 @@ chart_def = """
         text: 'Average Daily Rating '
     },
     subtitle: {
-        text: 'Average daily ratings'
+        text: 'According to the Course Reviews Dataset'
     },
     xAxis: {
         reversed: false,

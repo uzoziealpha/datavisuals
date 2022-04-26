@@ -20,7 +20,7 @@ chart_def = """
         text: 'Average Montly Rating'
     },
     subtitle: {
-        text: 'Rating per monthly courses'
+        text: 'According to the Course Reviews Dataset'
     },
     xAxis: {
         reversed: false,

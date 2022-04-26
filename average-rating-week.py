@@ -19,7 +19,7 @@ chart_def = """
         text: 'Average Weekly Rating'
     },
     subtitle: {
-        text: 'Rating per weekly courses'
+        text: 'According to the Course Reviews Dataset'
     },
     xAxis: {
         reversed: false,
