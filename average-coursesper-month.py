@@ -1,3 +1,5 @@
+#PLOT GRAPH 
+
 import justpy as jp
 import pandas
 from datetime import datetime
@@ -26,7 +28,7 @@ chart_def= """
         type: 'areaspline'
     },
     title: {
-        text: 'Average fruit consumption during one week'
+        text: 'Average course per month'
     },
     legend: {
         layout: 'vertical',
